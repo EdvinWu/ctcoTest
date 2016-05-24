@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MateList {
 
@@ -16,13 +17,26 @@ public class MateList {
         mateList.add(mate);
     }
 
-    public Mate getByName(String name) {
-        for (Mate mate : mateList) {
-            if (mate.getName().equals(name)) {
-                return mate;
-            }
-        }
-        return null;
+
+
+    public Mate getByName(String name){
+        return mateList
+                .stream()
+                .filter(mate->mate.getName().equals(name))
+                .findFirst()
+                .get();
+
+    }
+
+    public boolean mateExist(String name){
+       return mateList
+                .stream()
+                .anyMatch(mate -> mate.getName().equals(name));
+
+    }
+
+    public void sortByExpenses(){
+        mateList.sort((o1, o2) -> o1.getTotalExpense().compareTo(o2.getTotalExpense()));
     }
 
 }

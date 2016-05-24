@@ -3,6 +3,7 @@ import java.util.Map;
 
 public class Mate {
     private String name;
+    private Integer totalExpense = 0;
     private Map<String, Integer> listOfExpenses = new HashMap<>();
 
     public Map<String, Integer> getListOfExpenses() {
@@ -25,25 +26,41 @@ public class Mate {
         this.name = name;
     }
 
-    public void addExpense(String service, int price) {
+    public Integer getTotalExpense() {
+        return totalExpense;
+    }
+
+    public void setTotalExpense(Integer totalExpense) {
+        this.totalExpense = totalExpense;
+    }
+
+    private void addToExpense(Integer amount){
+       totalExpense += amount;
+    }
+
+    public void addExpense(String service, Integer price) {
         if (listOfExpenses.containsKey(service)) {
-            int existPrice = listOfExpenses.get(service);
+            Integer existPrice = listOfExpenses.get(service);
             listOfExpenses.put(service, price + existPrice);
+            addToExpense(price);
         } else {
+            addToExpense(price);
             listOfExpenses.put(service, price);
         }
     }
 
     public void expensesList() {
-        listOfExpenses.forEach((k, v) -> System.out.println("name: " + k + ": " + v + "$"));
+        System.out.println(name);
+        listOfExpenses.forEach((k, v) -> System.out.println("           name: " + k + ": " + v + "$"));
     }
 
-    public Integer totalExpense() {
+    /*public Integer totalExpense() {
         return listOfExpenses
                 .values()
                 .stream()
                 .reduce(0, (x, y) -> x + y);
-    }
+    }*/
+
 
     @Override
     public String toString() {

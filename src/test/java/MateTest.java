@@ -10,8 +10,8 @@ public class MateTest {
         mate.addExpense("x3",83);
         mate.addExpense("x3",46);
         Integer total = 12+83+46;
-        System.out.println(mate.totalExpense());
-        assertEquals(total,mate.totalExpense());
+        System.out.println(mate.getTotalExpense());
+        assertEquals(total,mate.getTotalExpense());
 
     }
 
