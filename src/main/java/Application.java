@@ -74,6 +74,6 @@ public class Application {
     }
 
     public void calculate() {
-
+    calc.calculate(mateList);
     }
 }

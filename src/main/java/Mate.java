@@ -4,7 +4,17 @@ import java.util.Map;
 public class Mate {
     private String name;
     private Integer totalExpense = 0;
+    private Integer diff = 0;
     private Map<String, Integer> listOfExpenses = new HashMap<>();
+
+    public Integer getDiff() {
+        return diff;
+    }
+
+    public void setDiff(Integer diff) {
+        this.diff = diff;
+    }
+
 
     public Map<String, Integer> getListOfExpenses() {
         return listOfExpenses;
@@ -34,8 +44,8 @@ public class Mate {
         this.totalExpense = totalExpense;
     }
 
-    private void addToExpense(Integer amount){
-       totalExpense += amount;
+    private void addToExpense(Integer amount) {
+        totalExpense += amount;
     }
 
     public void addExpense(String service, Integer price) {

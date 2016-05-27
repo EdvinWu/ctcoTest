@@ -18,24 +18,23 @@ public class MateList {
     }
 
 
-
-    public Mate getByName(String name){
+    public Mate getByName(String name) {
         return mateList
                 .stream()
-                .filter(mate->mate.getName().equals(name))
+                .filter(mate -> mate.getName().equals(name))
                 .findFirst()
                 .get();
 
     }
 
-    public boolean mateExist(String name){
-       return mateList
+    public boolean mateExist(String name) {
+        return mateList
                 .stream()
                 .anyMatch(mate -> mate.getName().equals(name));
 
     }
 
-    public void sortByExpenses(){
+    public void sortByExpenses() {
         mateList.sort((o1, o2) -> o1.getTotalExpense().compareTo(o2.getTotalExpense()));
     }
 

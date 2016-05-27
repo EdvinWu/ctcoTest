@@ -12,38 +12,38 @@ public class UI {
         System.out.println("Average: " + calc.avgExpense(mateList) + "$ to be paid by mate.");
     }
 
-  /*  private void printMateData(Mate mate) {
+    private void printMateData(Mate mate) {
         System.out.println(mate.getName() + ": " + mate.getTotalExpense() + "$");
     }
 
-    private void printMateExpenses(Mate mate) {
+   /* private void printMateExpenses(Mate mate) {
         mate.expensesList();
     }*/
 
-    private void printAllMateExpenses(MateList mateList){
+    private void printAllMateExpenses(MateList mateList) {
         mateList.getMateList().sort(((o1, o2) -> o1.getName().compareTo(o2.getName())));
         mateList.getMateList()
                 .stream()
                 .forEach(Mate::expensesList);
     }
 
-    /*private void printListOfExpenses(MateList mateList) {
+    private void printListOfExpenses(MateList mateList) {
         mateList.getMateList().forEach(this::printMateData);
-    }*/
+    }
 
     private void printMates(MateList mateList) {
         mateList.getMateList().sort(((o1, o2) -> o1.getName().compareTo(o2.getName())));
         mateList.getMateList().forEach(System.out::println);
     }
 
-    public void printData(MateList mateList,Calculator calc){
-        printMates(mateList);
-        System.out.println("------------------------");
+    public void printData(MateList mateList, Calculator calc) {
         printAllMateExpenses(mateList);
         System.out.println("------------------------");
-        printSum(mateList,calc);
+        printListOfExpenses(mateList);
         System.out.println("------------------------");
-        printAvg(mateList,calc);
+        printSum(mateList, calc);
+        System.out.println("------------------------");
+        printAvg(mateList, calc);
     }
 
     public void printDescription() {
@@ -54,12 +54,11 @@ public class UI {
         System.out.println("3 - Exit");
     }
 
-    public void printManualDescription(){
+    public void printManualDescription() {
         System.out.println("1 - Create mate");
         System.out.println("2 - Add expense");
         System.out.println("3 - Calculate");
     }
-
 
 
     public void menu() {
@@ -79,7 +78,7 @@ public class UI {
                 case "2":
                     noneOptionChosen = false;
                     app.generate();
-                    printData(app.getMateList(),app.getCalc());
+                    printData(app.getMateList(), app.getCalc());
                     app.calculate();
                     break;
 
@@ -98,7 +97,7 @@ public class UI {
     }
 
 
-    public void manual(){
+    public void manual() {
         printManualDescription();
         String entry;
         boolean noneOptionChosen = true;
@@ -119,7 +118,7 @@ public class UI {
 
                 case "3":
                     app.calculate();
-                    printData(app.getMateList(),app.getCalc());
+                    //printData(app.getMateList(), app.getCalc());
                     noneOptionChosen = false;
                     break;
                 default:
