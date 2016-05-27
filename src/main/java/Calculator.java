@@ -18,12 +18,6 @@ public class Calculator {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public List<Integer> diff(MateList mateList) {
-        return matesExpenses(mateList)
-                .stream()
-                .map(i -> i - avgExpense(mateList))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
 
     public Integer totalExpense(MateList mateList) {
         return mateList.getMateList()
@@ -42,8 +36,8 @@ public class Calculator {
 
     private void diffCalc(MateList mateList, int currentMate) {
         int nextMateIndex = 0;
-        int listSize = mateList.getMateList().size();
-        while ((nextMateIndex != listSize) || (mateList.getMateList().get(currentMate).getDiff() != 0 )) {
+        while ((nextMateIndex != mateList.getMateList().size()) && (mateList.getMateList().get(currentMate).getDiff() != 0)) {
+            mateDiff(mateList);
             if (mateList.getMateList().get(nextMateIndex).getDiff() < 0) {
                 if (mateList.getMateList().get(currentMate).getDiff() > Math.abs(mateList.getMateList().get(nextMateIndex).getDiff())) {
                     moneyTransfer(mateList, currentMate, nextMateIndex, true);
@@ -54,7 +48,6 @@ public class Calculator {
             nextMateIndex++;
         }
     }
-//mateList.getMateList().get(currentMate).getDiff() != 0 ||
 
     public void calculate(MateList mateList) {
         mateDiff(mateList);
@@ -73,27 +66,15 @@ public class Calculator {
             whichMatesDiff = currentMate;
         }
         int diff = Math.abs(mateList.getMateList().get(whichMatesDiff).getDiff());
-        mateList.getMateList().get(currentMate).setTotalExpense(mateList.getMateList().get(currentMate).getTotalExpense() - mateList.getMateList().get(whichMatesDiff).getDiff());
-        mateList.getMateList().get(currentMate).setDiff(mateList.getMateList().get(currentMate).getDiff() - mateList.getMateList().get(whichMatesDiff).getDiff());
-        mateList.getMateList().get(nextMate).setTotalExpense(mateList.getMateList().get(nextMate).getTotalExpense() - mateList.getMateList().get(whichMatesDiff).getDiff());
-        mateList.getMateList().get(nextMate).setDiff(mateList.getMateList().get(nextMate).getDiff() - mateList.getMateList().get(whichMatesDiff).getDiff());
-        System.out.println(mateList.getMateList().get(currentMate).getName() + "->" + mateList.getMateList().get(nextMate).getName() + ":" + diff + "$");
+        if (diff > 0) {
+            mateList.getMateList().get(currentMate).setTotalExpense(mateList.getMateList().get(currentMate).getTotalExpense() - diff);
+            mateList.getMateList().get(nextMate).setTotalExpense(mateList.getMateList().get(nextMate).getTotalExpense() + diff);
+            System.out.println(mateList.getMateList().get(currentMate).getName() + "->" + mateList.getMateList().get(nextMate).getName() + ":" + diff + "$");
+        }
+
 
     }
 }
-    /*
-берет дифф первого чувака и смотрит ему не хватает или у него перебор
 
-[7:25]
-если у него перебор, то она снимает перебор и ищет у кого недобор и бросает ему
-
-[7:25]
-когда у первого норм
-
-[7:25]
-берет второго vse.
-    *
-    *
-    * */
 
 
